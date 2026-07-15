@@ -1,7 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-import matter from "gray-matter";
+import { load as parseYaml } from "js-yaml";
 
 const CONTENT_DIRECTORY = path.join(process.cwd(), "content");
 const CASE_STUDIES_DIRECTORY = path.join(CONTENT_DIRECTORY, "case-studies");
@@ -207,6 +207,16 @@ function isMissingFile(error: unknown): boolean {
   return isRecord(error) && error.code === "ENOENT";
 }
 
+function parseFrontmatter(source: string): { data: unknown; content: string } {
+  const match = source.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+
+  if (!match) {
+    return { data: {}, content: source };
+  }
+
+  return { data: parseYaml(match[1]) ?? {}, content: match[2] };
+}
+
 function isValidSlug(slug: string): boolean {
   return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);
 }
@@ -247,7 +257,7 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null
 
   try {
     const file = await fs.readFile(filePath, "utf8");
-    const parsed = matter(file);
+    const parsed = parseFrontmatter(file);
     const data = isRecord(parsed.data) ? parsed.data : {};
     const frontmatter = parseCaseStudyFrontmatter(data, filePath);
 
@@ -293,7 +303,7 @@ export async function getNextCaseStudy(slug: string): Promise<CaseStudySummary |
 export async function getAboutContent(): Promise<AboutContent> {
   const filePath = path.join(CONTENT_DIRECTORY, "about.mdx");
   const file = await fs.readFile(filePath, "utf8");
-  const parsed = matter(file);
+  const parsed = parseFrontmatter(file);
   const data = isRecord(parsed.data) ? parsed.data : {};
 
   return {
