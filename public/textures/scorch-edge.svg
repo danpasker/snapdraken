@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 112" preserveAspectRatio="none" role="img" aria-label="Irregular scorched paper edge">
+  <defs>
+    <linearGradient id="scorch" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1A1613" stop-opacity="0"/>
+      <stop offset="0.48" stop-color="#6B2A10" stop-opacity="0.12"/>
+      <stop offset="0.72" stop-color="#6B2A10" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#1A1613" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="roughen" x="-2%" y="-70%" width="104%" height="240%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.007 0.085" numOctaves="3" seed="37" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+      <feGaussianBlur stdDeviation="0.35"/>
+    </filter>
+  </defs>
+  <path d="M0 35C78 27 126 43 207 33C309 20 363 43 459 34C568 24 638 47 731 34C827 21 899 42 995 33C1096 22 1167 44 1263 32C1361 20 1454 42 1600 29V85H0Z" fill="url(#scorch)" filter="url(#roughen)"/>
+  <path d="M0 55C93 46 142 60 226 51C323 40 381 61 478 52C575 43 652 62 750 51C858 39 914 61 1017 50C1122 38 1197 59 1295 48C1402 37 1488 56 1600 45" fill="none" stroke="#6B2A10" stroke-opacity="0.19" stroke-width="1.5" filter="url(#roughen)"/>
+</svg>
