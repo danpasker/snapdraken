@@ -69,10 +69,10 @@ export async function generateMetadata({ params }: WorkPageProps): Promise<Metad
       url: canonical,
       images: [
         {
-          url: caseStudy.hero_image,
-          width: 1600,
-          height: 900,
-          alt: caseStudy.title,
+          url: "/og.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Snapdraken dragon mark and workshop photograph",
         },
       ],
     },
@@ -80,7 +80,7 @@ export async function generateMetadata({ params }: WorkPageProps): Promise<Metad
       card: "summary_large_image",
       title: socialTitle,
       description: caseStudy.excerpt,
-      images: [caseStudy.hero_image],
+      images: ["/og.jpg"],
     },
   };
 }

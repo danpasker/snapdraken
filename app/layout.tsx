@@ -25,7 +25,8 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://snapdraken.com";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://snapdraken.paskerventures.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
