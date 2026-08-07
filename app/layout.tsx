@@ -31,11 +31,11 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Snapdraken — Themed Environment Design & Fabrication",
+    default: "Snapdraken — One More World Is Taking Shape",
     template: "%s — Snapdraken",
   },
   description:
-    "Travis Crumbaker designs and builds immersive themed environments, sets, props, murals, and exhibits from concept through installation.",
+    "One more world is taking shape—this one lives online. The Snapdraken shop is still open and building impossible places.",
   keywords: [
     "themed environment design",
     "specialty fabrication",
@@ -53,24 +53,22 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Snapdraken",
-    title: "Snapdraken — Building worlds for the world's biggest storytellers.",
-    description:
-      "Themed environment design and fabrication by Travis Crumbaker in La Grange, North Carolina.",
+    title: "Snapdraken — One more world is taking shape. This one lives online.",
+    description: "New site in fabrication. The Snapdraken shop is still open.",
     images: [
       {
-        url: "/og.jpg",
+        url: "/og-construction-v3.png",
         width: 1200,
         height: 630,
-        alt: "Snapdraken field record with dragon mark and workshop photograph",
+        alt: "Snapdraken dragon mark with the message: One more world is taking shape. This one lives online.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Snapdraken — Themed Environment Design & Fabrication",
-    description:
-      "Building worlds for the world's biggest storytellers.",
-    images: ["/og.jpg"],
+    title: "Snapdraken — One More World Is Taking Shape",
+    description: "New site in fabrication. The Snapdraken shop is still open.",
+    images: ["/og-construction-v3.png"],
   },
   alternates: {
     canonical: "/",
