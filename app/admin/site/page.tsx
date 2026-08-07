@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ClientRoster } from "@/components/ClientRoster";
 import { ConstructionInquiryForm } from "@/components/ConstructionInquiryForm";
 import { Press } from "@/components/Press";
+import { FEATURED_PROJECTS } from "@/lib/featured-projects";
 
 export const metadata: Metadata = {
   title: "Private Portfolio Preview",
@@ -32,33 +33,6 @@ const disciplines = [
     number: "04",
     title: "Exhibits & activations",
     text: "Travel-ready environments that install cleanly, read across a crowded floor, and pack down with a plan.",
-  },
-];
-
-const fieldNotes = [
-  {
-    label: "Production worlds",
-    title: "Built for the lens. Ready for the day.",
-    text: "Practical sets shaped around camera lanes, wild walls, concealed access, lighting positions, and the fixed clock of production.",
-    tags: ["Production design", "Set fabrication", "Scenic finish"],
-  },
-  {
-    label: "Attraction environments",
-    title: "The story continues into the surface.",
-    text: "Dimensional scenery and layered finishes that read quickly from the path, reward a closer look, and survive public use.",
-    tags: ["Theming", "Sculpted surfaces", "Field install"],
-  },
-  {
-    label: "Large-format builds",
-    title: "Big idea. Buildable sequence.",
-    text: "Complex forms divided into repeatable assemblies for machining, finishing, freight, placement, and inevitable field adjustment.",
-    tags: ["Design development", "Fabrication", "Crew direction"],
-  },
-  {
-    label: "Touring & temporary",
-    title: "Made to arrive more than once.",
-    text: "Modular exhibits and activations with indexed connections, protected finish zones, documented packing, and a sane strike plan.",
-    tags: ["Brand environments", "Logistics", "Installation"],
   },
 ];
 
@@ -120,24 +94,36 @@ export default function AdminSitePage() {
 
       <section className="admin-preview__work" id="work" aria-labelledby="work-title">
         <div className="admin-preview__section-head">
-          <p className="admin-preview__eyebrow">Selected fields / no velvet rope</p>
-          <h2 id="work-title">The work is the world around the story.</h2>
+          <p className="admin-preview__eyebrow">Selected projects / field journal</p>
+          <h2 id="work-title">A closer look, without the long read.</h2>
           <p>
-            Client details stay where they belong. What matters here is the problem,
-            the craft, and the handoff.
+            Open a project for one concise caption and the scope of what Snapdraken
+            made. Approved photography can drop into the same structure later.
           </p>
         </div>
 
-        <div className="admin-preview__notes">
-          {fieldNotes.map((note, index) => (
-            <article className="admin-preview__note" key={note.title}>
-              <div className="admin-preview__note-index">{String(index + 1).padStart(2, "0")}</div>
-              <p>{note.label}</p>
-              <h3>{note.title}</h3>
-              <span>{note.text}</span>
-              <ul aria-label={`${note.title} services`}>
-                {note.tags.map((tag) => <li key={tag}>{tag}</li>)}
-              </ul>
+        <div className="admin-project-grid">
+          {FEATURED_PROJECTS.map((project) => (
+            <article
+              className={`admin-project-card admin-project-card--${project.layout}`}
+              key={project.slug}
+            >
+              <Link href={`/admin/site/projects/${project.slug}`}>
+                <div
+                  className={`admin-project-plate admin-project-plate--${project.tone}`}
+                  aria-hidden="true"
+                >
+                  <span className="admin-project-plate__number">{project.number}</span>
+                  <span className="admin-project-plate__ring" />
+                  <p>{project.plate}</p>
+                </div>
+                <div className="admin-project-card__copy">
+                  <p>{project.category}</p>
+                  <h3>{project.title}</h3>
+                  <span>{project.caption}</span>
+                  <strong>Open project <i aria-hidden="true">↗</i></strong>
+                </div>
+              </Link>
             </article>
           ))}
         </div>
