@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ClientRoster } from "@/components/ClientRoster";
 import { ConstructionInquiryForm } from "@/components/ConstructionInquiryForm";
+import { Press } from "@/components/Press";
 
 export const metadata: Metadata = {
   title: "Private Portfolio Preview",
@@ -197,13 +199,8 @@ export default function AdminSitePage() {
         </ol>
       </section>
 
-      <section className="admin-preview__clients" aria-label="Selected client experience">
-        <p>Selected experience includes</p>
-        <div>
-          <span>Disney</span><i>◆</i><span>Universal</span><i>◆</i><span>MrBeast</span>
-          <i>◆</i><span>Netflix</span><i>◆</i><span>SeaWorld</span><i>◆</i><span>Museums</span>
-        </div>
-      </section>
+      <ClientRoster />
+      <Press />
 
       <section className="admin-preview__contact" id="contact" aria-labelledby="contact-title">
         <p className="admin-preview__eyebrow">The next impossible place</p>
