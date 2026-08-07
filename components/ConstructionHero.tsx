@@ -15,11 +15,6 @@ export function ConstructionHero() {
       <div className="holding-page__shade" aria-hidden="true" />
 
       <div className="holding-page__content">
-        <p className="holding-page__status">
-          <span aria-hidden="true" />
-          New site in fabrication
-        </p>
-
         <div className="holding-page__message">
           <h1>
             One more world is taking shape.
