@@ -14,6 +14,7 @@ export function ConstructionInquiryForm({
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [message, setMessage] = useState("");
+  const [draft, setDraft] = useState("");
   const nameRef = useRef<HTMLInputElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -57,6 +58,7 @@ export function ConstructionInquiryForm({
       }
 
       form.reset();
+      setDraft("");
       setStatus("success");
       setMessage("Brief received. We’ll be in touch soon.");
     } catch (error) {
@@ -76,20 +78,37 @@ export function ConstructionInquiryForm({
 
   return (
     <>
-      <button
-        ref={triggerRef}
-        className="holding-form__trigger"
-        type="button"
-        aria-haspopup="dialog"
-        onClick={() => {
+      <form
+        className="holding-inquiry"
+        onSubmit={(event) => {
+          event.preventDefault();
           setStatus("idle");
           setMessage("");
           setOpen(true);
         }}
       >
-        {label}
-        <span aria-hidden="true">↗</span>
-      </button>
+        <label className="holding-inquiry__label" htmlFor="holding-inquiry-draft">
+          {label}
+        </label>
+        <input
+          id="holding-inquiry-draft"
+          className="holding-inquiry__input"
+          type="text"
+          value={draft}
+          onChange={(event) => setDraft(event.target.value)}
+          placeholder="Tell us the world you want built"
+          autoComplete="off"
+        />
+        <button
+          ref={triggerRef}
+          className="holding-form__trigger holding-inquiry__button"
+          type="submit"
+          aria-haspopup="dialog"
+        >
+          {label}
+          <span aria-hidden="true">↗</span>
+        </button>
+      </form>
 
       {open ? (
         <div
@@ -177,6 +196,7 @@ export function ConstructionInquiryForm({
                     name="brief"
                     rows={4}
                     placeholder="The place, the audience, and the hard deadline."
+                    defaultValue={draft}
                     required
                   />
                 </label>
